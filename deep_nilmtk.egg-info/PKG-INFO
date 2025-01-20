@@ -1,0 +1,14 @@
+Metadata-Version: 2.2
+Name: deep_nilmtk
+Version: 0.1.1
+Summary: deep_nilmtk
+Requires-Dist: mlflow>=2.19.0
+Requires-Dist: optuna>=2.10.0
+Requires-Dist: pytorch-lightning>=1.5.10
+Requires-Dist: torch>=1.10.2
+Requires-Dist: torchaudio>=0.10.2
+Requires-Dist: torchvision>=0.11.3
+Requires-Dist: tensorflow
+Requires-Dist: scikit-learn>=1.6.1
+Dynamic: requires-dist
+Dynamic: summary

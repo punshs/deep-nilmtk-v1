@@ -8,7 +8,14 @@ class TestTrainer(unittest.TestCase):
         trainerImp=TorchTrainer({
             'test': 'Hello World'
         })
-        trainer = Trainer(trainerImp)
+        hparams = {
+            'model_class': None,
+            'backend': 'pytorch',
+            'model_name': 'Seq2Pointbaseline',
+            'loader_class': None,
+            'test': 'Hello World'
+        }
+        trainer = Trainer(trainerImp, hparams)
         self.assertEqual(trainer.test(),  'Hello World')
 
 

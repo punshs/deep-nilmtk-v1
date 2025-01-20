@@ -94,11 +94,15 @@ class GeneralDataLoader(torch.utils.data.Dataset):
         :rtype: np.array
         """
         in_indices = self.indices[index : index + self.in_size]
-        inputs = self.inputs[sorted(in_indices)]
+        inputs = self.inputs[in_indices if self.seq_type == 'seq2seq' else sorted(in_indices)]
         if self.targets is not None:
             indice_target = self.get_target_indice(in_indices)
 
-            targets = self.targets[indice_target]
+            if self.seq_type == 'seq2seq':
+                targets = self.targets[indice_target]
+            else:
+                # For seq2point, indice_target is a scalar
+                targets = self.targets[indice_target:indice_target+1]
             if self.seq_type =="seq2quantile":
                 targets =torch.quantile(targets, q=self.q, dim=0)
 

@@ -20,13 +20,16 @@ def pad_data(data, sequence_length, pad_at_begin= False):
     :return: The padded aggregate power.
     :rtype: np.array
     """
-    units_to_pad = 1 + sequence_length // 2
-    padding = (sequence_length,) if pad_at_begin else (units_to_pad,units_to_pad+1)
+    half_pad = sequence_length // 2
+    if pad_at_begin:
+        padding = (sequence_length,)
+    else:
+        padding = (half_pad, half_pad)
     if data.ndim==1:
         new_mains = np.pad(data.reshape(-1), padding,'constant',constant_values=(0,0))
         return new_mains
     else:
-        paddings = np.zeros((units_to_pad, data.shape[1]))
+        paddings = np.zeros((half_pad, data.shape[1]))
         new_mains = np.concatenate([paddings, data, paddings])
         return new_mains
 

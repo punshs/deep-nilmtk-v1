@@ -202,8 +202,11 @@ class Trainer:
 
         return predictions
 
-
-
+    def test(self):
+        """
+        Delegate test method to the trainer implementation
+        """
+        return self.trainer_imp.test()
 
 
 

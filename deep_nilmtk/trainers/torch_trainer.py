@@ -13,8 +13,9 @@ import os
 import mlflow
 
 class TorchTrainer(TrainerImplementor):
-    def __init__(self):
+    def __init__(self, params=None):
         self.batch_size = 64
+        self.params = params if params is not None else {}
 
     def log_init(self, chkpt_path, results_path, logs_path,  exp_name, version, patience_check=5):
         """
@@ -140,6 +141,9 @@ class TorchTrainer(TrainerImplementor):
         model.load_state_dict(checkpoint['state_dict'])
         model.eval()
         return model
+
+    def test(self):
+        return self.params.get('test')
 
 
 

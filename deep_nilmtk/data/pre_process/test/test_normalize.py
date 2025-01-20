@@ -33,7 +33,8 @@ class TestNormalize(unittest.TestCase):
         self.assertEqual(data.shape, norm_data.shape)
 
         data = np.array([1,2,1,2,1,2,2,1]).reshape(-1,2)
-        min_, max_, norm_data = normalize(data, type='min-max')
+        params, norm_data = normalize(data, type='min-max')
+        min_, max_ = params['min'], params['max']
         assertNumpyArraysEqual(min_, data.min(axis=0).reshape(-1,data.shape[-1]))
         assertNumpyArraysEqual(max_, data.max(axis=0).reshape(-1,data.shape[-1]))
         self.assertEqual(data.shape, norm_data.shape)
